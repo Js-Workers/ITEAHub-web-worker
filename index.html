@@ -6,103 +6,17 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <style>
-    .brick {
-      width: 100px;
-      height: 100px;
-      background: pink;
-      outline: 1px solid purple;
-      position: relative;
-      margin: 0 0 40px 0;
-      left: 0;
-      right: 0;
-    }
-    .table {
-      width: 100%;
-      display: table;
-    }
-    .table-cell {
-      display: table-cell;
-    }
-  </style>
 </head>
 <body>
-
-  <div id="brick" class="brick"></div>
-
-  <div class="table">
-    <div class="table-cell">
-      <div>
-        <button id="btn">Show alert</button>
-      </div>
-      <div>
-        <button id="move-btn">Start moving</button>
-      </div>
-      <div>
-        <button id="calc-btn">Calculate something</button>
-      </div>
-    </div>
-    <div class="table-cell">
-      <div>
-        <button id="send-msg-to-worker">Send Message to Worker</button>
-      </div>
-    </div>
-    <div class="table-cell">
-      <input id="fib-value" type="number">
-      <div>
-        <button id="calc-fib-btn">Calculate Fibonacci sequence</button>
-      </div>
-      <div>
-        <button id="calc-fib-ww-btn">Calculate Fibonacci sequence in Worker</button>
-      </div>
-    </div>
+  <div>
+    <a href="https://dosandk.github.io/ITEAHub-web-worker/example-1">
+      Example 1
+    </a>
   </div>
-
-  <script>
-
-    const sendMessageToWorkerBtn = document.getElementById('send-msg-to-worker');
-    const calcFibBtn = document.getElementById('calc-fib-btn');
-    const calcFibWithWorkerBtn = document.getElementById('calc-fib-ww-btn');
-    const fibValueInput = document.getElementById('fib-value');
-
-    const app = {};
-
-    function fib(n) {
-      return n <= 1 ? n : fib(n - 1) + fib(n - 2);
-    }
-
-    calcFibBtn.addEventListener('click', () => {
-      const {value} = fibValueInput;
-
-      if (value) {
-        console.time('factorial');
-        console.log(fib(value));
-        console.timeEnd('factorial');
-      }
-    });
-
-    calcFibWithWorkerBtn.addEventListener('click', () => {
-      const {value} = fibValueInput;
-
-      if (value) {
-        app.worker.postMessage({type: 'fib', body: value});
-      }
-    });
-
-    if (window.Worker) {
-      app.worker = new Worker('web-worker.js');
-
-      app.worker.addEventListener('message', event => {
-        console.error('Response from Worker', event);
-      })
-    }
-
-    sendMessageToWorkerBtn.addEventListener('click', () => {
-      console.error('Send message to Worker');
-      app.worker.postMessage({type: 'message', body: 'Hi, Worker!'});
-    })
-
-  </script>
-  <script src="app.js"></script>
+  <div>
+    <a href="https://dosandk.github.io/ITEAHub-web-worker/example-1">
+      Example 2
+    </a>
+  </div>
 </body>
 </html>
